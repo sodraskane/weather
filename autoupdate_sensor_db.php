@@ -19,8 +19,7 @@ while ($row = $res->fetch_assoc()) {
 	if ($row['SensorType'] == 0) {
 		$tmp1 = exec("/bin/cat /mnt/1wire/uncached/".$row['Serial']."/temperature");
 		$tmp1 = round($tmp1, 1);
-		$upd = $link->query("INSERT INTO SensorLogs(ID, SensorID, Temp_C, Date) VALUES('', '".$row['ID']."', '$tmp1', '0', '0', NOW())");
-//		$upd = $link->query("INSERT INTO SensorLogs(ID, SensorID, Temp_C, Count_A, Count_B, Date) VALUES('', '".$row['ID']."', '$tmp1', '0', '0', NOW())");
+		$upd = $link->query("INSERT INTO SensorLogs(ID, SensorID, Temp_C, Count_A, Count_B, Date) VALUES('', '".$row['ID']."', '$tmp1', '0', '0', NOW())");
 	}
 	elseif ($row['SensorType'] == 1) {
 		$tmp1 = trim(exec("/bin/cat /mnt/1wire/uncached/".$row['Serial']."/counter.A"));
